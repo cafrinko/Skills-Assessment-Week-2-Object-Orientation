@@ -123,7 +123,31 @@ Part 1: Discussion
 
 """2."""
 
-    def example(stand_in):
+    def example():
 
+        exam_name = raw_input("What would you like to call this exam? > ")
+        print exam_name
+        first_question = raw_input("Please enter the first question. > ")
+        print first_question
+        first_answer = raw_input("Please enter the answer to the first question. > ")
+        exam = Exam(exam_name, first_question, first_answer)
+
+        add_addl_question = raw_input("Would you like to add another question and answer pair? Enter Y or N >")
+        while addl_question_prompt == "Y":
+            next_question = raw_input("Please enter a question. > ")
+            print next_question
+            next_answer = raw_input("Please enter the answer > ")
+            exam.add_question(next_question, next_answer)
+            continue
+
+        student_first_name = raw_input("What is your first name? > ")
+        student_last_name = raw_input("What is your last name? > ")
+        student_address = raw_input("What is your address? > ")
+        student = Student(student_first_name, student_last_name, student_address)
+        print "%s %s \n %s" %(student_first_name, student_last_name, student_address)
+        print "Hello %s, and welcome to your exam. Let's begin" %(student_first_name)
+
+        exam.administer()
         
+"""3."""
 
