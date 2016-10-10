@@ -3,12 +3,12 @@ Part 1: Discussion
 
 1. What are the three main design advantages that object orientation
    can provide? Explain each concept.
-   Encapsulation - instead of separating the function from the data in separate
-   files, modules, etc, you can define and organically create the data with a
-   class.
+       Encapsulation - instead of separating the function from the data in separate
+       files, modules, etc, you can define and organically create the data with a
+       class.
        Abstration - attributes and methods that multiple instances of the class have
        in common can be stated in a class that doesn't need to be called.
-       Flexibility of structure - can make multiple instances of a class with
+       Polymorphism - can make multiple instances of a class with
        varying and interchangeable attributes and methods.
 2. What is a class?
        A type of construct that groups methods and data in containers, allowing you
@@ -32,10 +32,9 @@ Part 1: Discussion
 """
 
 
-"""
-Part 2: Classes and Init Methods
+""" Part 2: Classes and Init Methods"""
 
-1. Student
+""" 1. Student """
 
    class Student(object):
 
@@ -44,7 +43,7 @@ Part 2: Classes and Init Methods
            self.last_name = last_name
            self_address = address
 
-2.  Question
+"""2. Question"""
 
     class Question(object):
 
@@ -52,7 +51,7 @@ Part 2: Classes and Init Methods
            self.question = question
            self.correct_answer = correct_answer
 
-3.  Exam
+"""3.  Exam"""
 
     class Exam(object):
 
@@ -60,25 +59,71 @@ Part 2: Classes and Init Methods
            self.name = name
            self.questions = []
 
-"""
 
-"""
-Part 3: Methods:
+""" Part 3: Methods:"""
 
-1. 
+"""1.""" 
+
     class Exam(Question):
 
-        def __init__(self, name):
+        def __init__(self, name, question, correct_answer):
            self.name = name
            super(Exam, self).__init__(question, correct_answer)
            self.questions = []
 
         def add_question(self):
-            print %s %(self.question)
-            self.questions.extend(self.question)
+            return self.question
+            self.questions.extend(self.question, self.correct_answer)
 
+"""2."""
 
+    class Question(object):
 
+    def __init__(self, question, correct_answer):
+       self.question = question
+       self.correct_answer = correct_answer
 
+    def question_ask_and_evaluate(self):
+        answer_prompt = raw_input("> ")
+        print "%s %s" %(self.question, answer_prompt)
+        if self.correct_answer == answer_prompt:
+            return True
+        else:
+            return False
 
+"""3."""
+
+    class Exam(Question):
+
+        def __init__(self, name, question, correct_answer):
+           self.name = name
+           super(Exam, self).__init__(question, correct_answer)
+           self.questions = []
+
+        def add_question(self, question, correct_answer):
+            self.question = Question(raw_input("Add your new exam question here > "), raw_input("Add the answer to your question here > "))
+            self.questions.extend(self.question, self.correct_answer)    
+
+        def administer(self):
+            score = 0
+            for self.question in self.questions:
+                super(Exam, self).question_ask_and_evaluate()
+                if True:
+                    score += 1
+            return score
+
+""" Part 4"""
+
+"""1."""
+
+    def take_test(exam, student)
+
+        exam.administer()
+        setattr(student, score, exam.administer())
+
+"""2."""
+
+    def example(stand_in):
+
+        
 
