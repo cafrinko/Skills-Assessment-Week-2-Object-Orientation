@@ -79,32 +79,33 @@ Part 1: Discussion
 
     class Question(object):
 
-    def __init__(self, question, correct_answer):
-       self.question = question
-       self.correct_answer = correct_answer
+        def __init__(self, question, correct_answer):
+           self.question = question
+           self.correct_answer = correct_answer
 
-    def question_ask_and_evaluate(self):
-        answer_prompt = raw_input("> ")
-        print "%s %s" %(self.question, answer_prompt)
-        if self.correct_answer == answer_prompt:
-            return True
-        else:
-            return False
+        def question_ask_and_evaluate(self):
+            print "%s" %(self.question)
+            answer_prompt = raw_input("> ")
+            if self.correct_answer == answer_prompt:
+                return True
+            else:
+                return False
 
 """3."""
 
     class Exam(Question):
 
-        def __init__(self, name, question, correct_answer):
+        def __init__(self, name, question = None, correct_answer = None):
            self.name = name
            super(Exam, self).__init__(question, correct_answer)
            self.questions = []
 
         def add_question(self, question, correct_answer):
-            self.question = Question(raw_input("Add your new exam question here > "), raw_input("Add the answer to your question here > "))
-            self.questions.extend(self.question, self.correct_answer)    
+            q_and_a_pair = Question(question, correct_answer)
+            self.questions.extend(self.q_and_a_pair)
 
         def administer(self):
+            # print "\n".join(self.questions)
             score = 0
             for self.question in self.questions:
                 super(Exam, self).question_ask_and_evaluate()
@@ -116,38 +117,55 @@ Part 1: Discussion
 
 """1."""
 
-    def take_test(exam, student)
+    def take_test(exam, student):
 
         exam.administer()
         setattr(student, score, exam.administer())
 
 """2."""
 
-    def example():
+    def example(exam, student):
 
-        exam_name = raw_input("What would you like to call this exam? > ")
-        print exam_name
-        first_question = raw_input("Please enter the first question. > ")
-        print first_question
-        first_answer = raw_input("Please enter the answer to the first question. > ")
-        exam = Exam(exam_name, first_question, first_answer)
+        exam = Exam("Anxiety Level")
 
-        add_addl_question = raw_input("Would you like to add another question and answer pair? Enter Y or N >")
-        while addl_question_prompt == "Y":
-            next_question = raw_input("Please enter a question. > ")
-            print next_question
-            next_answer = raw_input("Please enter the answer > ")
-            exam.add_question(next_question, next_answer)
-            continue
+        question1 = "Are you ready for this?"
+        correct_answer1 = "No"
+        exam.add_question(question1, correct_answer1)
 
-        student_first_name = raw_input("What is your first name? > ")
-        student_last_name = raw_input("What is your last name? > ")
-        student_address = raw_input("What is your address? > ")
+        question2 = "What is your stress level on a scale of 1 to 10?"
+        correct_answer2 = "7"
+        exam.add_question(question2, correct_answer2)
+
+        student_first_name = "Isabelle"
+        student_last_name = "Allende"
+        student_address = "2525 Lantern Way Humboldt, CA 94123"
         student = Student(student_first_name, student_last_name, student_address)
-        print "%s %s \n %s" %(student_first_name, student_last_name, student_address)
-        print "Hello %s, and welcome to your exam. Let's begin" %(student_first_name)
 
         exam.administer()
         
-"""3."""
+"""Part 5"""
+
+    class Quiz(Exam, Question):
+
+        def __init__(self, name, question = None, correct_answer = None):
+            super(Quiz, self).__init__(name, question, correct_answer)
+            self.questions = []
+
+        def add_question(self, question, correct_answer):
+            super(Quiz, self).add_question()
+
+        def administer(self):
+            score = 0
+            for self.question in self.questions:
+                super(Quiz, self).question_ask_and_evaluate()
+                if True:
+                    score += 1
+            if score >= (len(self.questions) / 2):
+                result = True
+            else:
+                result = False
+            return result
+
+
+
 
